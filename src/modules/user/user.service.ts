@@ -15,4 +15,8 @@ export class UserService {
     async getUserById(id: MongooseSchema.Types.ObjectId) {
         return await this.userRepository.getUserById(id);
     }
+
+    async getUserAll(name: string){
+        return await this.userRepository.getUser(name);
+    }
 }

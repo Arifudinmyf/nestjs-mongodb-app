@@ -48,6 +48,21 @@ export class UserRepository {
         return user;
     }
 
+    async getUser(name: string) {
+        let users;
+        try {
+            users = await this.userModel.findOne({name});
+        } catch (error) {
+            throw new InternalServerErrorException(error);
+        }
+
+        if (!users) {
+            throw new NotFoundException('User not found');
+        }
+
+        return users;
+    }
+
     async getUserByEmail(email: string) {
         let user;
         try {
